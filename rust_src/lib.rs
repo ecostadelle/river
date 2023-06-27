@@ -321,6 +321,60 @@ impl RsRollingIQR {
     }
 }
 
+/*
+refatorar o código, de c para rust (pyo3), para calcular a distância euclidiana, apenas get1ToNDistances precisa estar acessível pelo python:
+
+
+double getDistance(const double *sample, const double *sample2, const int &numFeatures)
+{
+	double sum = 0;
+	for (int i = 0; i < numFeatures; i++)
+	{
+		double diff = sample[i] - sample2[i];
+		sum += diff * diff;
+	}
+	return sum;
+}
+
+void get1ToNDistances(const double *sample, const double *samples, double *distances, const int &numSamples, const int &numFeatures)
+{
+	for (int i = 0; i < numSamples; i++)
+	{
+		distances[i] = getDistance(sample, &samples[i * numFeatures], numFeatures);
+	}
+}
+
+*/
+#[derive(Serialize, Deserialize)]
+#[pyclass(module = "river.neighbor.nearest_neighbor")]
+pub struct RsGet1ToNDistances {
+    sample: Vec<f64>,
+    samples: Vec<f64>,
+    distances: Vec<f64>,
+}
+
+
+
+#[pymethods]
+impl RsGet1ToNDistances {
+    pub fn get_1_to_n_distances(sample: &[f64], samples: &[f64]) -> Vec<f64> {
+        let mut distances = vec![0.0; samples.len() / sample.len()];
+        for i in 0..distances.len() {
+            distances[i] = get_distance(sample, &samples[i * sample.len()..(i + 1) * sample.len()]);
+        }
+        distances
+    }
+
+    pub fn get_distance(sample: &[f64], sample2: &[f64]) -> f64 {
+        let mut sum = 0.0;
+        for i in 0..sample.len() {
+            let diff = sample[i] - sample2[i];
+            sum += diff * diff;
+        }
+        sum
+    }
+
+
 /// A Python module implemented in Rust.
 #[pymodule]
 fn _rust_stats(_py: Python, m: &PyModule) -> PyResult<()> {
@@ -333,5 +387,6 @@ fn _rust_stats(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_class::<RsSkew>()?;
     m.add_class::<RsRollingQuantile>()?;
     m.add_class::<RsRollingIQR>()?;
+    m.add_class::<RsGet1ToNDistances>()?;
     Ok(())
 }
