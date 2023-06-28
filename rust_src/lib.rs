@@ -345,6 +345,8 @@ void get1ToNDistances(const double *sample, const double *samples, double *dista
 }
 
 */
+
+
 #[derive(Serialize, Deserialize)]
 #[pyclass(module = "river.neighbor.nearest_neighbor")]
 pub struct RsGet1ToNDistances {
@@ -352,8 +354,15 @@ pub struct RsGet1ToNDistances {
     samples: Vec<f64>,
     distances: Vec<f64>,
 }
-
-
+/*
+fn get_distance(sample: &[f64], sample2: &[f64]) -> f64 {
+    let mut sum = 0.0;
+    for i in 0..sample.len() {
+        let diff = sample[i] - sample2[i];
+        sum += diff * diff;
+    }
+    sum
+}
 
 #[pymethods]
 impl RsGet1ToNDistances {
@@ -364,16 +373,8 @@ impl RsGet1ToNDistances {
         }
         distances
     }
-
-    pub fn get_distance(sample: &[f64], sample2: &[f64]) -> f64 {
-        let mut sum = 0.0;
-        for i in 0..sample.len() {
-            let diff = sample[i] - sample2[i];
-            sum += diff * diff;
-        }
-        sum
-    }
-
+}
+*/
 
 /// A Python module implemented in Rust.
 #[pymodule]
@@ -387,6 +388,6 @@ fn _rust_stats(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_class::<RsSkew>()?;
     m.add_class::<RsRollingQuantile>()?;
     m.add_class::<RsRollingIQR>()?;
-    m.add_class::<RsGet1ToNDistances>()?;
+    // m.add_class::<RsGet1ToNDistances>()?;
     Ok(())
 }

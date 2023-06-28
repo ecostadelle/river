@@ -11,9 +11,12 @@ from .knn_classifier import KNNClassifier
 from .knn_regressor import KNNRegressor
 from .lazy import LazySearch
 
+from .sam_knn import SAMKNNClassifier
+
 __all__ = [
     "LazySearch",
     "KNNClassifier",
     "KNNRegressor",
     "SWINN",
+    "SAMKNNClassifier"
 ]
