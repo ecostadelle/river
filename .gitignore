@@ -111,11 +111,12 @@ dmypy.json
 .idea
 
 # For convenience
-/*.ipynb
+/*.ipyn
 /*.csv*
 /*.arff
 /*.pkl
 test.py
+results/
 
 # For all-contributors
 yarn.lock
