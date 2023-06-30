@@ -354,27 +354,7 @@ pub struct RsGet1ToNDistances {
     samples: Vec<f64>,
     distances: Vec<f64>,
 }
-/*
-fn get_distance(sample: &[f64], sample2: &[f64]) -> f64 {
-    let mut sum = 0.0;
-    for i in 0..sample.len() {
-        let diff = sample[i] - sample2[i];
-        sum += diff * diff;
-    }
-    sum
-}
 
-#[pymethods]
-impl RsGet1ToNDistances {
-    pub fn get_1_to_n_distances(sample: &[f64], samples: &[f64]) -> Vec<f64> {
-        let mut distances = vec![0.0; samples.len() / sample.len()];
-        for i in 0..distances.len() {
-            distances[i] = get_distance(sample, &samples[i * sample.len()..(i + 1) * sample.len()]);
-        }
-        distances
-    }
-}
-*/
 
 /// A Python module implemented in Rust.
 #[pymodule]
