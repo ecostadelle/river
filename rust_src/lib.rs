@@ -368,6 +368,5 @@ fn _rust_stats(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_class::<RsSkew>()?;
     m.add_class::<RsRollingQuantile>()?;
     m.add_class::<RsRollingIQR>()?;
-    // m.add_class::<RsGet1ToNDistances>()?;
     Ok(())
 }
