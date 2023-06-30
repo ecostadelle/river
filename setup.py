@@ -136,7 +136,24 @@ setuptools.setup(
             "binding": True,
             "embedsignature": True,
         },
-    ),
+    )
+    + [
+        setuptools.Extension(
+            "river.neighbors.libNearestNeighbor",
+            sources=[
+                os.path.join(
+                    "river",
+                    "neighbors",
+                    "src",
+                    "libNearestNeighbor",
+                    "nearestNeighbor.cpp",
+                )
+            ],
+            include_dirs=[get_include()],
+            libraries=[] if platform.system() == "Windows" else ["m"],
+            language="c++",
+        )
+    ],
     rust_extensions=[RustExtension("river.stats._rust_stats", binding=Binding.PyO3)],
     # rust extensions are not zip safe, just like C-extensions.
     zip_safe=False,
