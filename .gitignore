@@ -116,7 +116,6 @@ dmypy.json
 /*.arff
 /*.pkl
 test.py
-results/
 
 # For all-contributors
 yarn.lock
