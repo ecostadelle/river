@@ -111,7 +111,7 @@ dmypy.json
 .idea
 
 # For convenience
-/*.ipyn
+/*.ipynb
 /*.csv*
 /*.arff
 /*.pkl
