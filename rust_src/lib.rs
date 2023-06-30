@@ -321,40 +321,6 @@ impl RsRollingIQR {
     }
 }
 
-/*
-refatorar o código, de c para rust (pyo3), para calcular a distância euclidiana, apenas get1ToNDistances precisa estar acessível pelo python:
-
-
-double getDistance(const double *sample, const double *sample2, const int &numFeatures)
-{
-	double sum = 0;
-	for (int i = 0; i < numFeatures; i++)
-	{
-		double diff = sample[i] - sample2[i];
-		sum += diff * diff;
-	}
-	return sum;
-}
-
-void get1ToNDistances(const double *sample, const double *samples, double *distances, const int &numSamples, const int &numFeatures)
-{
-	for (int i = 0; i < numSamples; i++)
-	{
-		distances[i] = getDistance(sample, &samples[i * numFeatures], numFeatures);
-	}
-}
-
-*/
-
-
-#[derive(Serialize, Deserialize)]
-#[pyclass(module = "river.neighbor.nearest_neighbor")]
-pub struct RsGet1ToNDistances {
-    sample: Vec<f64>,
-    samples: Vec<f64>,
-    distances: Vec<f64>,
-}
-
 
 /// A Python module implemented in Rust.
 #[pymodule]
